@@ -42,4 +42,4 @@ app.include_router(get_trainer)
 app.include_router(login_router)
 app.include_router(signup_router)
 if __name__ == "__main__":
-    run(app, port=4522, host="localhost")
+    run("main:app", port=4522, host="localhost", reload=True)

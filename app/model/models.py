@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, field_validator, Field
+from pydantic import BaseModel, ConfigDict, field_validator, Field, EmailStr
 from fastapi import HTTPException, status 
 class Add_Schedule(BaseModel):
     Selected_Course:str = Field(...)
@@ -74,15 +74,15 @@ class Add_Trainer(BaseModel):
 
 class User_Login(BaseModel):
     password:str= Field(...)
-    countryCode:str = Field(...)
+    email:EmailStr = Field(...)
     phone:str = Field(...)
-    status_code:int = status.HTTP_200_OK
+    status_code:int = Field(default=status.HTTP_200_OK)
     message:str = Field(default="Successfully Registerd")
     model_config = ConfigDict(
         json_schema_extra={
             "example":{
                 "password":"Amarjeet",
-                "countryCode":"+91",
+                "email":"amarkila@gmail.com",
                 "phone":"9056678462",
                 "status_code":"200",
                 "message":"Successfully Login"
