@@ -74,7 +74,7 @@ class Add_Trainer(BaseModel):
 
 class User_Login(BaseModel):
     password:str= Field(...)
-    email:EmailStr = Field(...)
+    email:str = Field(...)
     phone:str = Field(...)
     status_code:int = Field(default=status.HTTP_200_OK)
     message:str = Field(default="Successfully Registerd")
@@ -93,7 +93,7 @@ class User_Login(BaseModel):
 class User_SingUp(BaseModel):
     firstName:str =Field(...)
     lastName:str =Field(...)
-    email:str =Field(...)
+    email:EmailStr =Field(...)
     phone: str =Field(...)
     password:str =Field(...)
     model_config = ConfigDict(

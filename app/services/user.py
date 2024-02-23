@@ -66,10 +66,12 @@ class UserService:
     async def login_func(self, data):
         re1 = await self.Singup_LoginCollection.find_one({"phone":data.phone})
         if re1:
-            if re1["phone"] == data.phone:
+            if re1["email"] == data.email:
                 if re1["password"] == data.password:
                     return User_Login(**re1)
                 else:
-                    HTTPException(detail="Password Wrong", status_code=status.HTTP_403_FORBIDDEN)
+                    raise HTTPException(detail="Wrong Password", status_code=status.HTTP_400_BAD_REQUEST)
             else:
-                HTTPException(detail="User dont Exist", status_code=status.HTTP_400_BAD_REQUEST)
+                raise HTTPException(detail="Wrong Email Address", status_code=status.HTTP_400_BAD_REQUEST)
+        else:
+            raise HTTPException(detail="User not  Exist", status_code=status.HTTP_400_BAD_REQUEST)
